@@ -1,13 +1,12 @@
-
-const express = require("express");
-const hpp = require("hpp");
-const cookieParser = require("cookie-parser");
-const helmet = require("helmet");
-const cors = require("cors");
-const rateLimit = require("express-rate-limit");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose"); // Standardized import
-const router = require("./routes/route");
+const express = require('express');
+const hpp = require('hpp');
+const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
+const cors = require('cors');
+const rateLimit = require('express-rate-limit');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose'); // Standardized import
+const router = require('./routes/route');
 const path = require('path');
 const mongoSanitize = require('express-mongo-sanitize');
 
@@ -35,23 +34,22 @@ const generalLimiter = rateLimit({
 // Stricter rate limit for login route
 const loginLimiter = rateLimit({
   windowMs: 100 * 60 * 1000, // 5 minutes
-  max: 10, // Limit each IP to 10 requests per window for login
-  message: "Too many login attempts, please try again later.",
+  max: 1000, // Limit each IP to 10 requests per window for login
+  message: 'Too many login attempts, please try again later.',
 });
 
 app.use(generalLimiter);
 app.use(loginLimiter);
 app.use('/images', express.static(path.join(__dirname, 'public/uploads')));
 
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Server is running"
-  })
-})
+    message: 'Server is running',
+  });
+});
 
 app.use('/api/v1', router);
-
 
 mongoose
   .connect(process.env.CONNECTION_STRING)
