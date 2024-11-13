@@ -38,8 +38,7 @@ const loginLimiter = rateLimit({
   message: 'Too many login attempts, please try again later.',
 });
 
-app.use(generalLimiter);
-app.use(loginLimiter);
+
 app.use('/images', express.static(path.join(__dirname, 'public/uploads')));
 
 app.get('/', (req, res) => {
