@@ -42,9 +42,6 @@ const loginLimiter = rateLimit({
 app.use(generalLimiter);
 app.use(loginLimiter);
 app.use('/images', express.static(path.join(__dirname, 'public/uploads')));
-app.get('/',(req, res)=>{
-  res.send("Hello World);
-})
 app.use('/api/v1', router);
 
 
