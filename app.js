@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1', router);
 
 mongoose
-  .connect(process.env.CONNECTION_STRING)
+  .connect("mongodb+srv://bdcallingshamim:I6XSclGmntglH74E@cluster0.c8jdc.mongodb.net/test")
   .then(() => {
     console.log('Database connection successful!😍');
   })
