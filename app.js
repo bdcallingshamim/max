@@ -43,6 +43,13 @@ app.use(generalLimiter);
 app.use(loginLimiter);
 app.use('/images', express.static(path.join(__dirname, 'public/uploads')));
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server is running"
+  })
+})
+
 app.use('/api/v1', router);
 
 
